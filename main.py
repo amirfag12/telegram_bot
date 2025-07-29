@@ -35,7 +35,7 @@ def start_word_chain(message):
     used_words[chat_id] = set()  # ریست کردن کلمات استفاده شده
     bot.send_message(chat_id, "بازی کلمه بعدی شروع شد! کلمه باید با حرف 'س' شروع بشه.")
 
-@bot.message_handler(func=lambda message: True)
+@bot.message_handler(func=lambda message: message.chat.id in last_char)
 def word_chain_game(message):
     chat_id = message.chat.id
     text = message.text.strip()
