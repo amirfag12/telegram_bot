@@ -303,6 +303,41 @@ def unpin_message(message):
     else:
         bot.send_message(message.chat.id, 'ادمین نیستم کمکم کن')
 
+@bot.message_handler(func=lambda message: message.text and message.text.startswith('حذف '))
+def delete_messages(message):
+    chat_id = message.chat.id
+    user_id = message.from_user.id
+
+    # چک ادمین بودن کاربر
+    if not is_user_admin(chat_id, user_id):
+        bot.reply_to(message, "ادمین نیستی کص کش!")
+        return
+
+    try:
+        count = int(message.text.split()[1])
+    except (IndexError, ValueError):
+        bot.reply_to(message, "دستور اشتباهه. مثلاً بزن: حذف 5")
+        return
+
+    if count <= 0:
+        bot.reply_to(message, "عدد باید بزرگتر از صفر باشه.")
+        return
+
+    # گرفتن پیام‌های اخیر (شامل پیام حذف‌کننده)
+    messages = bot.get_chat_history(chat_id, limit=count + 1)  # +1 برای حذف پیام دستور هم
+
+    # حذف پیام‌ها
+    deleted_count = 0
+    for msg in messages:
+        try:
+            bot.delete_message(chat_id, msg.message_id)
+            deleted_count += 1
+        except Exception as e:
+            # ممکنه نتونه حذف کنه پیام‌هایی که خیلی قدیمی هستن یا دسترسی نداشته باشه
+            pass
+
+    bot.send_message(chat_id, f"{deleted_count} پیام حذف شد.")
+
 
 # ------------------------------
 # # ADMIN_ID = 985386314 # شناسه ادمین رو اینجا بزار
