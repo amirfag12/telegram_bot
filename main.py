@@ -141,32 +141,32 @@ def send_joke(message):
 
 
 # ترجمه
-translator = Translator()
+# translator = Translator()
 
 
-@bot.message_handler(func=lambda message: message.text == 'ترجمه')
-def translate_reply(message):
-    # بررسی می‌کنیم که پیام ریپلای باشه
-    if message.reply_to_message and message.reply_to_message.text:
-        original_text = message.reply_to_message.text
+# @bot.message_handler(func=lambda message: message.text == 'ترجمه')
+# def translate_reply(message):
+#     # بررسی می‌کنیم که پیام ریپلای باشه
+#     if message.reply_to_message and message.reply_to_message.text:
+#         original_text = message.reply_to_message.text
 
-        # تشخیص زبان متن
-        detected = translator.detect(original_text)
-        user_lang = detected.lang
+#         # تشخیص زبان متن
+#         detected = translator.detect(original_text)
+#         user_lang = detected.lang
 
-        # اگر زبان پیام فارسی نیست، ترجمه کن به فارسی
-        if user_lang != 'fa':
-            translated = translator.translate(original_text, dest='fa')
-            reply_text = f"بیا خارکصه اینم ترجمت:\n{translated.text}"
-            bot.reply_to(message.reply_to_message, reply_text)
+#         # اگر زبان پیام فارسی نیست، ترجمه کن به فارسی
+#         if user_lang != 'fa':
+#             translated = translator.translate(original_text, dest='fa')
+#             reply_text = f"بیا خارکصه اینم ترجمت:\n{translated.text}"
+#             bot.reply_to(message.reply_to_message, reply_text)
 
-        # اگر زبان فارسی بود، ترجمه کن به انگلیسی (اختیاری)
-        else:
-            translated = translator.translate(original_text, dest='en')
-            reply_text = f"Translation to English:\n{translated.text}"
-            bot.reply_to(message.reply_to_message, reply_text)
-    else:
-        bot.reply_to(message, 'لطفاً روی پیامی ریپلای کنید که می‌خواهید ترجمه شود.')
+#         # اگر زبان فارسی بود، ترجمه کن به انگلیسی (اختیاری)
+#         else:
+#             translated = translator.translate(original_text, dest='en')
+#             reply_text = f"Translation to English:\n{translated.text}"
+#             bot.reply_to(message.reply_to_message, reply_text)
+#     else:
+#         bot.reply_to(message, 'لطفاً روی پیامی ریپلای کنید که می‌خواهید ترجمه شود.')
 
 
 # سکوت و آن سکوت
