@@ -1,7 +1,6 @@
 import telebot
 import sqlite3
 from telebot.types import KeyboardButton, ReplyKeyboardMarkup
-from googletrans import Translator
 import random
 import os
 
