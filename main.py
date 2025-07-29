@@ -3,6 +3,7 @@ import sqlite3
 from telebot.types import KeyboardButton, ReplyKeyboardMarkup
 from googletrans import Translator
 import random
+import os
 
 TOKEN = '7965728090:AAFoH7ZW3xf0MHCc5UzFvJAj3tOyM18xzsQ'
 bot = telebot.TeleBot(TOKEN)
