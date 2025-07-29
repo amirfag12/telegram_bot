@@ -5,7 +5,7 @@ from googletrans import Translator
 import random
 import os
 
-TOKEN = '7965728090:AAFoH7ZW3xf0MHCc5UzFvJAj3tOyM18xzsQ'
+TOKEN = os.environ.get('BOT_TOKEN')
 bot = telebot.TeleBot(TOKEN)
 
 # ------------------------------------
