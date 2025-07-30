@@ -743,4 +743,4 @@ def unpin_message(message):
 # @bot.message_handler(func=lambda msg: msg.text == '😂')
 # def somthing(message):
 #     bot.reply_to(message, "استیکر فرستادی")
-bot.polling()
+bot.polling(none_stop=True, timeout=60)
