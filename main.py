@@ -3,9 +3,25 @@ import sqlite3
 from telebot.types import KeyboardButton, ReplyKeyboardMarkup
 import random
 import os
+from flask import Flask
+import threading
+import telebot
+import os
 
+
+app = Flask(__name__)
 TOKEN = os.environ.get('BOT_TOKEN')
 bot = telebot.TeleBot(TOKEN)
+
+@app.route("/")
+def home():
+    return "Bot is alive!", 200
+
+def run():
+    app.run(host="0.0.0.0", port=10000)
+
+# این یک ترد جدا برای وب‌سرور می‌سازه
+threading.Thread(target=run).start()
 
 # ------------------------------------
 # ادمین ربات
